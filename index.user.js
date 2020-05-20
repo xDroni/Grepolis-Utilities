@@ -2,6 +2,9 @@
 // @name            Grepolis Sending Resources Hotkeys
 // @version         1.0
 // @author          dx droni <mrdroonix@gmail.com>
+// @updateURL       https://github.com/xDroni/Grepolis-Resources-Hotkeys/blob/master/index.user.js
+// @downloadURL	    https://github.com/xDroni/Grepolis-Resources-Hotkeys/blob/master/index.user.js
+// @description     Utility Grepolis script that allows you to send the resources faster using hotkeys.
 // @include         http://*.grepolis.com/game/*
 // @include         https://*.grepolis.com/game/*
 // @exclude         view-source://*
