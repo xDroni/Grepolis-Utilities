@@ -31,10 +31,19 @@ window.addEventListener('keydown', event => {
                     // select the next resource input
                     case 'Tab': {
                         event.preventDefault()
+
                         // change the focus (active element)
                         // mod 3 because we have 3 resource types, if we have 3rd focused clicking Tab will focus the 1st one
-
                         array[(index+1) % 3].focus()
+                        break
+                    }
+
+                    // send the resources
+                    case 'Enter': {
+                        event.preventDefault()
+                        const sendButton = document.querySelector('#trade > div > div.content > div.btn_trade_button.button_new')
+                        sendButton.click()
+                        activeElement.blur()
                         break
                     }
 
@@ -62,6 +71,15 @@ window.addEventListener('keydown', event => {
                         }
                     }
                 }
+            }
+        }
+    }
+    else {
+        if(event.key === 'Tab') {
+            event.preventDefault()
+            const resourcesInputElements = document.querySelectorAll('.resource_selector > div.spinner > div.body > input')
+            if(resourcesInputElements.length > 0) {
+                resourcesInputElements[0].focus()
             }
         }
     }
