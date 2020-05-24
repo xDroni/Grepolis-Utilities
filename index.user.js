@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name                Grepolis Sending Resources Hotkeys
-// @version             1.0
+// @version             1.0.1
 // @author              dx droni <mrdroonix@gmail.com>
 // @updateURL           https://github.com/xDroni/Grepolis-Resources-Hotkeys/raw/master/index.user.js
 // @downloadURL         https://github.com/xDroni/Grepolis-Resources-Hotkeys/raw/master/index.user.js
