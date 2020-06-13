@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name                Grepolis Sending Resources Hotkeys
-// @version             1.0.2
+// @version             1.0.3
 // @author              dx droni <mrdroonix@gmail.com>
 // @updateURL           https://github.com/xDroni/Grepolis-Resources-Hotkeys/raw/master/index.user.js
 // @downloadURL         https://github.com/xDroni/Grepolis-Resources-Hotkeys/raw/master/index.user.js
@@ -94,9 +94,53 @@ function tradeHotkeys() {
                     }
                     break;
                 }
+                case 'ArrowDown': {
+                    event.preventDefault();
+                    selectTown(event.code);
+
+                    break;
+                }
+                case 'ArrowUp': {
+                    event.preventDefault();
+                    selectTown(event.code);
+
+                    break;
+                }
             }
         }
     });
+
+    function selectTown(key) {
+        const townListWindow = document.getElementById('grcrtTslTownsList');
+
+        if(townListWindow) {
+            const townList = document.querySelectorAll('.TSLitem');
+
+            const isNotSelected = function(element) {
+                return !element.classList.contains('tsl_set')
+            }
+
+            // if any element is selected then select the first one
+            if(Array.from(townList).every(isNotSelected)) {
+                townList[0].click();
+                return;
+            }
+
+            for(const [index, town] of townList.entries()) {
+                // check if the ArrowDown is pressed, the town is selected and it's not the last in the list
+                if(key === 'ArrowDown' && town.classList.contains('tsl_set') && index < townList.length - 1) {
+                    townList[index+1].click();
+                    return;
+                }
+
+                // check if the ArrowUp is pressed, the town is selected and it's not the first in the list
+                if(key === 'ArrowUp' && town.classList.contains('tsl_set') && index !== 0) {
+                    townList[index-1].click();
+                    return;
+                }
+            }
+        }
+    }
 }
 
 function townSwitch() {
