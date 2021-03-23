@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name                Grepolis Sending Resources Hotkeys
-// @version             1.0.4
+// @version             1.0.5
 // @author              dx droni <mrdroonix@gmail.com>
 // @updateURL           https://github.com/xDroni/Grepolis-Resources-Hotkeys/raw/master/index.user.js
 // @downloadURL         https://github.com/xDroni/Grepolis-Resources-Hotkeys/raw/master/index.user.js
@@ -8,7 +8,7 @@
 // @include             http://*.grepolis.com/game/*
 // @include             https://*.grepolis.com/game/*
 // @exclude             view-source://*
-// @copyright           2020+, dx droni
+// @copyright           2021+, dx droni
 // @grant               none
 // ==/UserScript==
 
@@ -47,8 +47,10 @@ function ajaxListener() {
                 try {
                     const timeNode = commandList[i].querySelector('div > .details_wrapper');
                     const newNode = document.createElement('div');
+                    const box = document.querySelector('#toolbar_activity_commands_list > .sandy-box.js-dropdown-list');
+                    box.setAttribute('style', 'min-width: 300px');
                     newNode.className = 'time';
-                    newNode.setAttribute('style', 'position: absolute; top: 0; margin-left: 60px');
+                    newNode.setAttribute('style', 'position: absolute; top: 0; margin-left: 60px; font-size: 14px; color: #13487e');
                     const newTime = document.createTextNode(epochConverter(commandList[i].getAttribute('data-timestamp')).toString());
                     newNode.appendChild(newTime);
                     timeNode.appendChild(newNode);
@@ -76,7 +78,8 @@ function ajaxListener() {
                 const response = JSON.parse(xhr.responseText);
 
                 // getting movement command id
-                const commandId = response.json.notifications[2].param_id;
+                const movementsUnits = response.json.notifications.filter(item => item.subject === 'MovementsUnits');
+                const commandId = movementsUnits[0].param_id;
                 appendTimestamp(commandId);
                 break;
 
